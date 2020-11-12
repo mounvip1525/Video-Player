@@ -4,4 +4,39 @@
 body{
     margin:0;
     padding:0;
+    height:100vh;
+    overflow:hidden;
+    background-image:url('background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.container{
+    margin:20px auto 20px auto;
+    max-width:70vw;
+    min-width:800px;
+    background:white;
+    border-radius: 10px;
+    border:3px solid black;
+    cursor:pointer;
+    position:relative;
+}
+.video{
+    width:100%;
+    border-radius: 10px;
+    height:auto;
+}
+@media screen and (max-width:500px){
+    body{
+        max-height:100vh;
+    }
+    .container{
+        min-width:0;
+        max-width:95vw;
+    }
 }
