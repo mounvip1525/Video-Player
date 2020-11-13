@@ -26,10 +26,20 @@ function togglePlay(){
     }
 }
 
-//Updating the progress bar
+//Updating the time format for current time and total duration
+function displayTime(time){
+    const minutes=Math.floor(time/60);
+    let seconds=Math.floor(time%60);
+    seconds=seconds>9 ? seconds : `0${seconds}`;
+    return `${minutes}:${seconds}`;
+}
+
+//Updating the progress bar and the time elements
 function updateProgress(){
     // console.log('currenTime',video.currentTime,'Duration',video.duration);
     progressBar.style.width=`${(video.currentTime/video.duration)*100}%`;
+    currentTime.textContent=`${displayTime(video.currentTime)} / `;
+    duration.textContent=displayTime(video.duration);
 }
 
 playButton.addEventListener('click',togglePlay);
