@@ -42,8 +42,44 @@ function updateProgress(){
     duration.textContent=displayTime(video.duration);
 }
 
+//For jumping between different parts of video on clicking on the width of the progressbar
+function setProgress(e){
+    // console.log(e);
+    const newTime=e.offsetX/progressBar.offsetWidth;
+    // console.log(newTime);
+    progressBar.style.width=`${newTime * 100}%`;
+    video.currentTime=newTime*video.duration;
+}
+
+//Volume controls
+function setVolume(e){
+    let volume=e.offsetX/volumeRange.offsetWidth;
+    //console.log(volume);
+    if(volume<0.1){
+        volume=0;
+    }
+    if(volume>0.8){
+        volume=1;
+    }
+    volumeBar.style.width=`${volume*100}%`;
+    video.volume=volume;
+    //change the volume icon
+    volumeIcon.className='';
+    if(volume>0.7){
+        volumeIcon.classList.add('fas','fa-volume-up');
+    }
+    else if (volume<0.7 && volume >0){
+        volumeIcon.classList.add('fas','fa-volume-down');
+    }
+    else{
+        volumeIcon.classList.add('fas','fa-volume-off');
+    }
+}
+
 playButton.addEventListener('click',togglePlay);
 video.addEventListener('click',togglePlay);
 video.addEventListener('ended',showPlayIcon);
 video.addEventListener('timeupdate',updateProgress);
 video.addEventListener('canplay',updateProgress);
+progressRange.addEventListener('click',setProgress);
+volumeRange.addEventListener('click',setVolume);
