@@ -32,7 +32,7 @@ function togglePlay(){
 function displayTime(time){
     const minutes=Math.floor(time/60);
     let seconds=Math.floor(time%60);
-    seconds=seconds>9 ? seconds : `0${seconds}`;
+    seconds=seconds > 9 ? seconds : `0${seconds}`;
     return `${minutes}:${seconds}`;
 }
 
@@ -132,12 +132,7 @@ function openFullscreen(elem) {
   let fullscreen=false;
 // Toggle fullscreen
 function toggleFullscreen(){
-    if(!fullscreen){
-        openFullscreen(player);
-    }
-    else{
-        closeFullscreen();
-    }
+    !fullscreen ? openFullscreen(player) : closeFullscreen();
     fullscreen=!fullscreen;
 }
 
