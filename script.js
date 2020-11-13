@@ -7,6 +7,7 @@ const volumeRange=document.querySelector('.volume-range');
 const volumeBar=document.querySelector('.volume-bar');
 const currentTime=document.querySelector('.time-elapsed');
 const duration=document.querySelector('.time-duration');
+const speed=document.querySelector('.player-speed');
 const fullscreenButton=document.querySelector('.fullscreen-btn');
 
 //Play and Pause
@@ -53,6 +54,7 @@ function setProgress(e){
 
 //Volume controls
 function setVolume(e){
+    let prevVolume=1;
     let volume=e.offsetX/volumeRange.offsetWidth;
     //console.log(volume);
     if(volume<0.1){
@@ -74,6 +76,31 @@ function setVolume(e){
     else{
         volumeIcon.classList.add('fas','fa-volume-off');
     }
+    prevVolume=volume;
+}
+
+// Mute/Unmute
+function toggleMute(){
+    volumeIcon.className='';
+    if(video.volume){
+        prevVolume=video.volume;
+        volumeBar.style.width=0;
+        video.volume=0;
+        volumeIcon.classList.add('fas','fa-volume-mute');
+        volumeIcon.setAttribute('title','Unmute');
+    } else {
+        video.volume=prevVolume;
+        volumeBar.style.width=`${prevVolume*100}%`;
+        volumeIcon.classList.add('fas','fa-volume-up');
+        volumeIcon.setAttribute('title','Mute');
+    }
+}
+
+//Play back speed
+function setPlaySpeed(){
+    // console.log('Video Playback rate',video.playbackRate);
+    // console.log('Selected value',speed.value);
+    video.playbackRate=speed.value;
 }
 
 playButton.addEventListener('click',togglePlay);
@@ -83,3 +110,5 @@ video.addEventListener('timeupdate',updateProgress);
 video.addEventListener('canplay',updateProgress);
 progressRange.addEventListener('click',setProgress);
 volumeRange.addEventListener('click',setVolume);
+volumeIcon.addEventListener('click',toggleMute);
+speed.addEventListener('change',setPlaySpeed);
