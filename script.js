@@ -1,3 +1,4 @@
+const player=document.querySelector('.container');
 const video=document.querySelector('video');
 const progressRange=document.querySelector('.progress-range');
 const progressBar=document.querySelector('.progress-bar');
@@ -8,7 +9,7 @@ const volumeBar=document.querySelector('.volume-bar');
 const currentTime=document.querySelector('.time-elapsed');
 const duration=document.querySelector('.time-duration');
 const speed=document.querySelector('.player-speed');
-const fullscreenButton=document.querySelector('.fullscreen-btn');
+const fullscreenButton=document.querySelector('.fullscreen');
 
 //Play and Pause
 function showPlayIcon(){
@@ -103,6 +104,43 @@ function setPlaySpeed(){
     video.playbackRate=speed.value;
 }
 
+//Full screen
+ /* Open fullscreen */
+function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+    video.classList.add('video-fullscreen');
+  }
+  
+  /* Close fullscreen */
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+    video.classList.remove('video-fullscreen');
+  }
+
+  let fullscreen=false;
+// Toggle fullscreen
+function toggleFullscreen(){
+    if(!fullscreen){
+        openFullscreen(player);
+    }
+    else{
+        closeFullscreen();
+    }
+    fullscreen=!fullscreen;
+}
+
 playButton.addEventListener('click',togglePlay);
 video.addEventListener('click',togglePlay);
 video.addEventListener('ended',showPlayIcon);
@@ -112,3 +150,4 @@ progressRange.addEventListener('click',setProgress);
 volumeRange.addEventListener('click',setVolume);
 volumeIcon.addEventListener('click',toggleMute);
 speed.addEventListener('change',setPlaySpeed);
+fullscreenButton.addEventListener('click',toggleFullscreen);
