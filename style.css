@@ -176,6 +176,23 @@ select:focus{
     }
     .container{
         min-width:0;
-        max-width:95vw;
+        max-width:90vw;
+    }
+    .fas{
+        font-size:20px;
+    }
+    .show-controls{
+        height:20%;
+    }
+    .volume-range{
+        width:50px;
+        left:30px;
+    }
+    select{
+        font-size:12px;
+        top:-4px;
+    }
+    .time{
+        font-size: 12px;
     }
 }
