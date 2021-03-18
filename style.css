@@ -75,7 +75,7 @@ body{
     height:10px;
 }
 .progress-bar{
-    background:rgb(47, 142, 238);
+    background:rgb(240, 87, 87);
     border-radius: 10px;
     width:50%;
     height:100%;
@@ -108,7 +108,7 @@ body{
 }
 .fa-play:hover,
 .fa-pause:hover{
-    color:rgb(79, 154, 230);
+    color:rgb(240,87,87);
     cursor:pointer;
 }
 .volume-icon{
@@ -133,7 +133,7 @@ body{
     transition: width 0.2s ease-in;
 }
 .volume-bar:hover{
-    background:rgb(61, 144, 228);
+    background:rgb(240, 87, 87);
 }
 .speed,.time{
     margin-right:15px;
@@ -163,7 +163,7 @@ select:focus{
     user-select:none;
 }
 .fullscreen-icon:hover{
-    color:dodgerblue;
+    color:rgb(240, 87, 87);
 }
 .video-fullscreen{
     position:relative;
